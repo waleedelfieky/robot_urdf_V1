@@ -34,10 +34,42 @@ by using
 - create file.cpp for the package inside src folder
 
 ## Publicher_Node:
+This is a simple ROS 2 node that publishes velocity commands to the `/cmd_vel` topic, which is commonly used for controlling robots. The node publishes a `Twist` message at a fixed interval to control linear and angular velocities.
 
+## Overview
+- **Node Name**: `velocity_publisher`
+- **Topic**: `/cmd_vel`
+- **Message Type**: `geometry_msgs::msg::Twist`
+- **Publishing Interval**: 1 second
+- **Linear Velocity**: 1 m/s (move forward)
+- **Angular Velocity**: 1 rad/s (rotate around the z-axis)
+
+## Code Explanation
+- The node is named `"velocity_publisher"`.
+- A publisher is created for the `/cmd_vel` topic with a queue size of 10.
+- A timer triggers the `publish_velocity` method every second.
+- The `publish_velocity` method:
+  - Creates a `Twist` message.
+  - Sets linear velocity on the x-axis to `1.0` (moving forward).
+  - Sets angular velocity on the z-axis to `1.0` (rotating).
+  - Publishes the message and logs the linear and angular velocities.
+
+## How to Run
+
+1. Ensure you have ROS 2 installed (e.g., Foxy, Galactic, or Humble).
+2. Create a ROS 2 package and place the code in the `src` directory.
+3. Build the package using:
+   ```bash
+   colcon build
 
 
 ## video for the final output:
+
+
+
+https://github.com/user-attachments/assets/73bda367-107b-4726-bd6f-662c837602b8
+
+
 
 
 ## Contact Information:
