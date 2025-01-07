@@ -15,12 +15,24 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
 
-# find dependencies
+# Find dependencies
 find_package(ament_cmake REQUIRED)
-# uncomment the following section in order to fill in
-# further dependencies manually.
-# find_package(<dependency> REQUIRED)
+find_package(rclcpp REQUIRED)  # Add this line to find rclcpp
+find_package(geometry_msgs REQUIRED)  # Add this line to find geometry_msgs
 
+# Add the executable for your velocity publisher
+add_executable(vel_pub src/vel_publicher.cpp)  # Use the correct path to your source file
+
+# Link dependencies to the executable
+ament_target_dependencies(vel_pub rclcpp geometry_msgs)
+
+# Install the executable
+install(TARGETS
+  vel_pub
+  DESTINATION lib/${PROJECT_NAME}
+)
+
+# Install other directories (unchanged)
 install(DIRECTORY
   launch urdf config worlds
   DESTINATION share/${PROJECT_NAME}/
@@ -38,3 +50,4 @@ if(BUILD_TESTING)
 endif()
 
 ament_package()
+
